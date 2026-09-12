@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CTC Generator</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="card">
+
+      <h1>ಪ್ರಭಾರ ವರ್ಗಾವಣೆ ಪ್ರಮಾಣ ಪತ್ರ</h1>
+
+      <p class="subtitle">
+       ಖಾಲಿ ಜಾಗಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ
+      </p>
+
+
+      <form id="ctcForm">
+
+        <!-- TIME -->
+
+        <div class="form-group">
+
+          <label for="time">
+            ಪ್ರಭಾರ ವಹಿಸಿಕೊಂಡ ಸಮಯ
+          </label>
+
+          <select id="time" required>
+
+            <option value="">
+              ಆಯ್ಕೆ ಮಾಡಿ
+            </option>
+
+            <option value="ಪೂರ್ವಾಹ್ನ">
+              ಪೂರ್ವಾಹ್ನ
+            </option>
+
+            <option value="ಅಪರಾಹ್ನ">
+              ಅಪರಾಹ್ನ
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- DATE -->
+
+        <div class="form-group">
+
+          <label for="dateofchargetaken">
+            ಪ್ರಭಾರ ವಹಿಸಿಕೊಂಡ ದಿನಾಂಕ
+          </label>
+
+          <input
+            type="date"
+            id="dateofchargetaken"
+            required
+          >
+
+        </div>
+
+
+        <!-- GOVERNMENT ORDER -->
+
+        <div class="form-group">
+
+          <label for="GovtOrder">
+            ಸರ್ಕಾರಿ ಆದೇಶ 
+          </label>
+
+          <input
+            type="text"
+            id="GovtOrder"
+            placeholder="ಸರ್ಕಾರಿ ಆದೇಶವನ್ನು ನಮೂದಿಸಿ"
+            required
+          >
+
+        </div>
+
+
+        <!-- GOVERNMENT ORDER DATE -->
+
+        <div class="form-group">
+
+          <label for="govtorderdate">
+            ಸರ್ಕಾರಿ ಆದೇಶದ ದಿನಾಂಕ
+          </label>
+
+          <input
+            type="date"
+            id="govtorderdate"
+            required
+          >
+
+        </div>
+
+
+        <!-- REASON -->
+
+        <div class="form-group">
+
+          <label for="reason">
+            ಕಾರಣ
+          </label>
+
+          <select id="reason" required>
+
+            <option value="">
+              ಆಯ್ಕೆ ಮಾಡಿ
+            </option>
+
+            <option value="ರಜೆ">
+              ರಜೆ
+            </option>
+
+            <option value="ವರ್ಗಾವಣೆ">
+              ವರ್ಗಾವಣೆ
+            </option>
+
+            <option value="ಮುಂಭಡ್ತಿ">
+              ಮುಂಬಡ್ತಿ
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- DESIGNATION -->
+
+        <div class="form-group">
+
+          <label for="designation">
+            ಹುದ್ದೆ
+          </label>
+
+          <input
+            type="text"
+            id="designation"
+            placeholder="ಹುದ್ದೆಯನ್ನು ನಮೂದಿಸಿ"
+            required
+          >
+
+        </div>
+
+
+        <!-- PLACE -->
+
+        <div class="form-group">
+
+          <label for="place">
+           ಸ್ಥಳ
+          </label>
+
+          <input
+            type="text"
+            id="place"
+            placeholder="ಸ್ಥಳವನ್ನು ನಮೂದಿಸಿ"
+            required
+          >
+
+        </div>
+
+
+        <!-- RELIEVING OFFICER -->
+
+        <div class="form-group">
+
+          <label for="relievingofficername">
+           ಪದಮುಕ್ತ ಅಧಿಕಾರಿಯ ಹೆಸರು
+          </label>
+
+          <input
+            type="text"
+            id="relievingofficername"
+            placeholder="ಪದಮುಕ್ತ ಅಧಿಕಾರಿಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ"
+            required
+          >
+
+        </div>
+
+
+        <!-- CHARGE TAKING OFFICER -->
+
+        <div class="form-group">
+
+          <label for="chargeTakenOfficerName">
+            ಪದಗ್ರಾಹಿ ಅಧಿಕಾರಿಯ ಹೆಸರು
+          </label>
+
+          <input
+            type="text"
+            id="chargeTakenOfficerName"
+            placeholder="ಪದಗ್ರಾಹಿ ಅಧಿಕಾರಿಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ"
+            required
+          >
+
+        </div>          
+
+
+        <!-- GENERATE -->
+
+        <button
+          type="submit"
+          id="generateButton"
+        >
+          Generate CTC
+        </button>
+
+      </form>
+
+
+      <!-- WAITING MESSAGE -->
+
+      <div
+        id="waitingMessage"
+        class="waiting hidden"
+      >
+
+        <div class="spinner"></div>
+
+        <div class="pleaseWait">
+          Please wait…
+        </div>
+
+        <div id="waitingSeconds">
+          Preparing your CTC PDF
+        </div>
+
+      </div>
+
+
+      <!-- SUCCESS -->
+
+      <div
+        id="successMessage"
+        class="success hidden"
+      >
+
+        CTC PDF is ready.
+
+      </div>
+
+
+      <!-- DOWNLOAD -->
+
+      <button
+        id="downloadButton"
+        class="download hidden"
+        type="button"
+      >
+        Download CTC PDF
+      </button>
+
+
+      <!-- ERROR -->
+
+      <div
+        id="errorMessage"
+        class="error hidden"
+      ></div>
+
+
+    </div>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
