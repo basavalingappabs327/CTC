@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTC Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="card">
+    <!-- Header Banner Block -->
+    <div class="header-banner">
+      
+      <h1>ಪ್ರಭಾರ ವರ್ಗಾವಣೆ ಪ್ರಮಾಣ ಪತ್ರ </h1>
+      <div class="subtitle">(ಖಾಲಿ ಜಾಗಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ)</div>
+    </div>
+
+    <!-- Form linked directly to script.js via element IDs -->
+    <form id="ctcForm">
+      <div class="form-grid">
+        
+        <!-- Time Assignment (Matched ID: 'time') -->
+        <div class="form-group span-2">
+          <label for="time">ಪ್ರಭಾರ ವಹಿಸಿಕೊಂಡ ಸಮಯ</label>
+          <div class="select-wrapper">
+            <select id="time" required>
+              <option value="" disabled selected hidden>ಆಯ್ಕೆ ಮಾಡಿ</option>
+              <option value="ಪೂರ್ವಾಹ್ನ">ಪೂರ್ವಾಹ್ನ</option>
+              <option value="ಅಪರಾಹ್ನ">ಅಪರಾಹ್ನ</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Date Assignment (Matched ID: 'dateofchargetaken') -->
+        <div class="form-group">
+          <label for="dateofchargetaken">ಪ್ರಭಾರ ವಹಿಸಿಕೊಂಡ ದಿನಾಂಕ</label>
+          <input type="date" id="dateofchargetaken" required>
+        </div>
+
+        <!-- Government Order (Matched ID: 'GovtOrder') -->
+        <div class="form-group">
+          <label for="GovtOrder">ಸರ್ಕಾರಿ ಆದೇಶ</label>
+          <input type="text" id="GovtOrder" placeholder="ಉದಾ: ಇಒ 123 ಬಿಸಿಎ" required>
+        </div>
+
+        <!-- Government Order Date (Matched ID: 'govtorderdate') -->
+        <div class="form-group">
+          <label for="govtorderdate">ಸರ್ಕಾರಿ ಆದೇಶದ ದಿನಾಂಕ</label>
+          <input type="date" id="govtorderdate" required>
+        </div>
+
+        <!-- Reason Selection (Matched ID: 'reason') -->
+        <div class="form-group">
+          <label for="reason">ಕಾರಣ</label>
+          <div class="select-wrapper">
+            <select id="reason" required>
+              <option value="" disabled selected hidden>ಆಯ್ಕೆ ಮಾಡಿ</option>
+              <option value="ರಜೆ">ರಜೆ</option>
+              <option value="ವರ್ಗಾವಣೆ">ವರ್ಗಾವಣೆ</option>
+              <option value="ಮುಂಬಡ್ತಿ">ಮುಂಬಡ್ತಿ</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Designation (Matched ID: 'designation') -->
+        <div class="form-group">
+          <label for="designation">ಹುದ್ದೆ</label>
+          <input type="text" id="designation" placeholder="ಹುದ್ದೆಯ ಹೆಸರು" required>
+        </div>
+
+        <!-- Place (Matched ID: 'place') -->
+        <div class="form-group">
+          <label for="place">ಪ್ರಭಾರ ವಹಿಸಿಕೊಂಡ ಸಂಸ್ಥೆಯ ಹೆಸರು ಮತ್ತು ಸ್ಥಳ </label>
+          <input type="text" id="place" placeholder="ಉದಾ: ಪಶುಚಿಕಿತ್ಸಾಲಯ, ಹೊರಳಹಳ್ಳಿ" required>
+        </div>
+
+        <!-- Relieved Officer Name (Matched ID: 'relievingofficername') -->
+        <div class="form-group">
+          <label for="relievingofficername">ಪದಮುಕ್ತ ಅಧಿಕಾರಿಯ ಹೆಸರು</label>
+          <input type="text" id="relievingofficername" placeholder="ಹೆಸರು ನಮೂದಿಸಿ" required>
+        </div>
+
+        <!-- Relieving Officer Name (Matched ID: 'chargeTakenOfficerName') -->
+        <div class="form-group">
+          <label for="chargeTakenOfficerName">ಪದಗ್ರಾಹಿ ಅಧಿಕಾರಿಯ ಹೆಸರು</label>
+          <input type="text" id="chargeTakenOfficerName" placeholder="ಹೆಸರು ನಮೂದಿಸಿ" required>
+        </div>
+
+        <!-- Submit Button (Matched ID: 'generateButton') -->
+        <div class="form-group span-2">
+          <button type="submit" id="generateButton">
+            <span>Generate CTC</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+
+      </div>
+    </form>
+
+    <!-- Async UI State Elements (Matched IDs for script.js) -->
+    <div id="waitingMessage" class="waiting hidden">
+      <div class="spinner"></div>
+      <div class="pleaseWait">Please wait…</div>
+      <div id="waitingSeconds">Preparing your CTC PDF</div>
+    </div>
+
+    <div id="successMessage" class="success hidden">
+      <div class="success-icon">✓</div>
+      <div>CTC PDF is ready.</div>
+    </div>
+
+    <button id="downloadButton" class="download hidden" type="button">
+      Download CTC PDF
+    </button>
+
+    <div id="errorMessage" class="error hidden"></div>
+
+  </div>
+
+  <!-- External Script Link -->
+  <script src="script.js"></script>
+</body>
+</html>
